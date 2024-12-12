@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('correo')->unique();
             $table->string('celular')->nullable();
             $table->date('fecha_nac')->nullable();
-            $table->enum('genero', ['Hombre', 'Mujer', 'Otro'])->nullable();
+            $table->enum('genero', ['Masculino', 'Femenino', 'Otro'])->nullable();
             $table->text('observacion')->nullable();
             $table->timestamps();
         });
