@@ -34,7 +34,13 @@ class InscripcionesResource extends Resource
                     ->required()
                     ->label('Cliente'),
 
-                Forms\Components\Select::make('status')
+                Forms\Components\Select::make('user_id')
+                    ->relationship('user', 'name')
+                    ->searchable()
+                    ->required()
+                    ->label('Recepcionista'),
+
+                Forms\Components\Select::make('estado')
                     ->options([
                         'ACTIVO' => 'Activo',
                         'VENCIDO' => 'Vencido',
@@ -51,37 +57,14 @@ class InscripcionesResource extends Resource
                     ->relationship('planes', 'nombre')
                     ->searchable()
                     ->required()
-                    ->label('Plan')
-                    ->reactive() // Asegura que el campo es reactivo
-                    ->afterStateUpdated(function (Closure $set, $state, $livewire) {
-                        // Obtén el plan seleccionado y actualiza la fecha de fin
-                        $plan = \App\Models\Planes::find($state);
-                        if ($plan) {
-                            $duracionDias = $plan->duracion_dias;
-                            $fechaInicio = $livewire->form->getState('fecha_inicio');
-                            if ($fechaInicio) {
-                                $fechaFin = \Carbon\Carbon::parse($fechaInicio)->addDays($duracionDias)->format('Y-m-d');
-                                $set('fecha_fin', $fechaFin);
-                            }
-                        }
-                    }),
+                    ->label('Plan'),
 
                 Forms\Components\DatePicker::make('fecha_inicio')
                     ->label('Fecha de Inicio')
-                    ->required()
-                    ->reactive()
-                    ->afterStateUpdated(function ($set, $state, $livewire) {
-                        $planId = $livewire->form->getState('planes_id');
-                        if ($planId) {
-                            $plan = \App\Models\Planes::find($planId);
-                            if ($plan && $state) {
-                                $duracionDias = $plan->duracion_dias;
-                                $fechaFin = \Carbon\Carbon::parse($state)->addDays($duracionDias)->format('Y-m-d');
-                                $set('fecha_fin', $fechaFin);
-                            }
-                        }
-                    }),
-
+                    ->required(),
+                Forms\Components\DatePicker::make('fecha_fin')
+                    ->label('Fecha de Fin')
+                    ->required(),
 
             ]);
     }

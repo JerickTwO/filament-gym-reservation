@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('cliente_id')->constrained()->onDelete('cascade');
             $table->foreignId('planes_id')->constrained()->onDelete('cascade');
-            $table->foreignId('recepcionista_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->enum('estado', ['ACTIVO', 'VENCIDO', 'SUSPENDIDO'])->default('ACTIVO');

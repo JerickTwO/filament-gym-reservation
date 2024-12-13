@@ -31,7 +31,14 @@ class PlanesResource extends Resource
     {
         return $table
             ->columns([
-                //
+
+                Tables\Columns\TextColumn::make('nombre')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('dias_duracion')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('precio'),
+                Tables\Columns\TextColumn::make('descripcion'),
+                Tables\Columns\TextColumn::make('activo'),
             ])
             ->filters([
                 //
