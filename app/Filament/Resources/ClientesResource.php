@@ -63,7 +63,7 @@ class ClientesResource extends Resource
                         Select::make('genero')
                             ->label('Género')
                             ->options([
-                                'Maculino' => 'Maculino',
+                                'Masculino' => 'Masculino',
                                 'Femenino' => 'Femenino',
                                 'Otro' => 'Otro'
                             ])
@@ -79,7 +79,14 @@ class ClientesResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('nombre')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('apellido')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('correo'),
+                Tables\Columns\TextColumn::make('celular'),
+                Tables\Columns\TextColumn::make('fecha_nac'),
+                Tables\Columns\TextColumn::make('genero'),
             ])
             ->filters([
                 //

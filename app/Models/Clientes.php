@@ -13,7 +13,7 @@ class Clientes extends Model
         return $this->belongsTo(Planes::class);
     }
 
-    public function incripciones(): HasMany
+    public function inscripciones(): HasMany
     {
         return $this->hasMany(Inscripciones::class);
     }
