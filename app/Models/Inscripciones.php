@@ -34,8 +34,7 @@ class Inscripciones extends Model
 
     public function planes()
     {
-        return $this->belongsTo(Planes::class, '
-        ');
+        return $this->belongsTo(Planes::class);
     }
 
     public function user()
