@@ -2,8 +2,9 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms\Components\FileUpload;
 use App\Filament\Resources\ClientesResource\Pages;
-use App\Filament\Resources\ClientesResource\RelationManagers;
+use Filament\Tables\Columns\ImageColumn;
 use App\Models\Clientes;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -66,7 +67,15 @@ class ClientesResource extends Resource
                                 'Masculino' => 'Masculino',
                                 'Femenino' => 'Femenino',
                                 'Otro' => 'Otro'
-                            ])
+                            ]),
+                        FileUpload::make('imagen')
+                            ->disk('public')
+                            ->label('Imagen')
+                            ->image()
+                            ->directory('uploads/images') // Carpeta donde se guardará
+                            ->required() // Si es obligatorio
+                            ->maxSize(2048) // Tamaño máximo en KB (2 MB)
+
                     ]),
 
                 Textarea::make('observacion')
@@ -87,6 +96,10 @@ class ClientesResource extends Resource
                 Tables\Columns\TextColumn::make('celular'),
                 Tables\Columns\TextColumn::make('fecha_nac'),
                 Tables\Columns\TextColumn::make('genero'),
+                Tables\Columns\ImageColumn::make('imagen')
+                    ->label('Imagen')
+                    ->size(50)
+
             ])
             ->filters([
                 //

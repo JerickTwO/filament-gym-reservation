@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('fecha_nac')->nullable();
             $table->enum('genero', ['Masculino', 'Femenino', 'Otro'])->nullable();
             $table->text('observacion')->nullable();
+            $table->string('imagen')->nullable();
             $table->timestamps();
         });
     }

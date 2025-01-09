@@ -8,7 +8,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Clientes extends Model
 {
-    public function planes(): BelongsTo
+    protected $fillable = [
+        'nombre',
+        'apellido',
+        'correo',
+        'celular',
+        'fecha_nac',
+        'genero',
+        'observacion',
+        'imagen',
+    ];
+        public function planes(): BelongsTo
     {
         return $this->belongsTo(Planes::class);
     }
